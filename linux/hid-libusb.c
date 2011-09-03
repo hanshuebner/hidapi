@@ -679,11 +679,7 @@ static void *read_thread(void *param)
 	/* Handle all the events. */
 	while (!dev->shutdown_thread) {
 		int res;
-		struct timeval tv;
-
-		tv.tv_sec = 0;
-		tv.tv_usec = 100000; //TODO: Fix this value.
-		res = libusb_handle_events_timeout(NULL, &tv);
+		res = libusb_handle_events(NULL);
 		if (res < 0) {
 			/* There was an error. Break out of this loop. */
 			break;
